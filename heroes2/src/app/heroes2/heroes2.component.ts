@@ -16,10 +16,11 @@ export class HeroesComponent implements OnInit {
   ngOnInit(): void {
     this.getHeroes
   }
-  onSelectHero(hero: Hero){
-    this.selectedHero = hero;
-  }
   getHeroes(): void {
-    this.heroes = this.heroService.getHeroes();
+    this.heroService.getHeroesMock().subscribe(heroes =>this.heroes = heroes);
+  }
+  onSelectHero(hero: Hero): void{
+    this.selectedHero = hero
+    this.messageService.add(`HeroesComponent: Selected hero id ${hero.id}`)
   }
 }
